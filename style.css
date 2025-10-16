@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  background: #87ceeb;
+  font-family: Arial, sans-serif;
+}
+
+.game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("./images/raod.jpg") no-repeat bottom right/cover;
+}
+
+
+.signal {
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  width: 60px;
+  height: 180px;
+  background: #222;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.light {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #444;
+}
+
+.light.active {
+  box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.6);
+}
+
+.car {
+  position: absolute;
+  bottom: 150px;
+  left: 10%;
+  width: 220px;
+  transition: transform 0.2s linear;
+}
+
+.controls {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.controls button {
+  font-size: 1.2em;
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #ffcc00;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.controls button:hover {
+  background: #ffaa00;
+}
+
+.alert-box {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 0, 0, 0.85);
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 10px;
+  display: none;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+@media (max-width: 600px) {
+  .car {
+    width: 140px;
+  }
+  .signal {
+    width: 40px;
+    height: 120px;
+  }
+}
