@@ -8,7 +8,7 @@ var lights = {
 
 var moving = false;
 var carPosition = 10; // left in %
-var currentLight = "green";
+var currentLight = "green"; // start with green light
 
 document.getElementById("raceBtn").addEventListener("click", function() {
   moving = true;
@@ -20,15 +20,15 @@ document.getElementById("brakeBtn").addEventListener("click", function() {
 
 function moveCar() {
   if (moving) {
-    carPosition += 0.5; // speed
+    carPosition += 0.9; // speed
     car.style.left = carPosition + "%";
 
     if (currentLight === "red" && carPosition > 20) {
-      showAlert("🚨 Red Light Violation! Fine: $500");
+      showAlert(" You broke the signal! Pay $500 or face penalty!");
       moving = false;
     }
 
-    if (carPosition > 100) carPosition = -20; // loop
+    if (carPosition > 100) carPosition = -20; // loop again
   }
   requestAnimationFrame(moveCar);
 }
@@ -42,20 +42,20 @@ function showAlert(msg) {
 }
 
 function cycleLights() {
-  // Red
-  setActiveLight("red");
-  currentLight = "red";
+  // Start with green (8 sec)
+  setActiveLight("green");
+  currentLight = "green";
   setTimeout(function() {
-    // Yellow
+    // Yellow (3 sec)
     setActiveLight("yellow");
     currentLight = "yellow";
     setTimeout(function() {
-      // Green
-      setActiveLight("green");
-      currentLight = "green";
-      setTimeout(cycleLights, 15000)    ;
+      // Red (10 sec)
+      setActiveLight("red");
+      currentLight = "red";
+      setTimeout(cycleLights, 4000);
     }, 3000);
-  }, 10000);
+  }, 5000);
 }
 
 function setActiveLight(color) {
@@ -69,5 +69,6 @@ function setActiveLight(color) {
   if (color === "green") lights[color].style.background = "green";
 }
 
+// Start game
 cycleLights();
 moveCar();
